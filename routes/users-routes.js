@@ -1,10 +1,11 @@
 const express = require("express");
 const { check } = require("express-validator");
 
+const verifyToken = require("../middlewares/authJwt");
 const router = express.Router();
 const usersController = require("../controllers/users-controllers");
 
-router.get("/all", usersController.getUsers);
+router.get("/all", verifyToken ,usersController.getUsers);
 
 router.post(
   "/signup",
